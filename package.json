@@ -1,0 +1,30 @@
+{
+  "name": "kbp-comelec-mirror",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "axios": "^0.22.0",
+    "bootstrap": "^5.0.0",
+    "cross-env": "^7.0.3",
+    "date-fns-tz": "^1.1.6",
+    "jquery": "^3.6.0",
+    "next": "12.1.5",
+    "node-sass": "^7.0.1",
+    "path": "^0.12.7",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "reaptcha": "^1.7.2",
+    "sass": "^1.49.9",
+    "webpack": "^5.69.1"
+  },
+  "devDependencies": {
+    "eslint": "8.14.0",
+    "eslint-config-next": "12.1.5"
+  }
+}
