@@ -1,5 +1,4 @@
 //TODOS: refine search, auth, hide download archive when not loggedin, refine regions
-
 import Head from "next/head";
 import styles from "styles/Home.module.scss";
 import { useState, useEffect, useRef } from "react";

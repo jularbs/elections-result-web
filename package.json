@@ -24,6 +24,7 @@
     "webpack": "^5.69.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.10",
     "eslint": "8.14.0",
     "eslint-config-next": "12.1.5"
   }
