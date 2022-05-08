@@ -10,6 +10,7 @@
   top: 0;
   background-color: white;
   border-bottom: 1px #162570 solid;
+  min-width: 100vw;
 }
 
 .results-container {
@@ -146,4 +147,110 @@
   text-align: center;
   font-size: 1.2rem;
   margin-top: 200px;
+}
+
+.searchboxContainer2 {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+
+  border-top: 1px solid #162570;
+  button {
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+    padding: 0 40px;
+    margin-left: 0.5rem;
+    background-color: #162570;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 0.8rem;
+
+    &:hover {
+      color: white;
+    }
+  }
+
+  input {
+    padding: 0.5rem 0.7rem;
+    font-size: 1.2rem;
+    flex-grow: 1;
+  }
+}
+
+.headerContainer2 {
+  position: relative;
+  background-color: white;
+  border-bottom: 1px #162570 solid;
+  min-width: 100vw;
+
+  .location-container {
+    ul {
+      display: flex;
+      padding: 0;
+      max-width: 100vw;
+      overflow: scroll;
+      margin: 0;
+      background-color: #162570;
+
+      li {
+        white-space: nowrap;
+        padding: 1rem 2rem;
+        list-style-type: none;
+        cursor: pointer;
+
+        color: white;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.tallyContainer {
+  padding: 1rem;
+  table {
+    --radius: 8px;
+    border-collapse: collapse;
+    border: none !important;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+    th,
+    td {
+      padding: 12px 15px;
+    }
+
+    thead {
+      font-weight: 700;
+
+      tr {
+        background-color: #162570;
+        color: #ffffff;
+        text-align: left;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #dddddd;
+      }
+      tr:nth-of-type(even) {
+        background-color: #f3f3f3;
+      }
+      tr:last-of-type {
+        border-bottom: 2px solid #162570;
+      }
+    }
+
+    @media only screen and (max-width: 900px) {
+      min-width: 100%;
+    }
+
+    @media only screen and (min-width: 901px) {
+      min-width: 700px;
+    }
+  }
 }

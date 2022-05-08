@@ -6,6 +6,7 @@ module.exports = {
   env: {
     API: process.env.API,
     DOMAIN: process.env.DOMAIN,
+    RECAPTCHA_SITE_KEY: process.env.RECAPTCHA_SITE_KEY,
   },
   webpack(config, options) {
     config.module.rules.push({
