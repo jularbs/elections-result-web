@@ -8,7 +8,7 @@ import Router from "next/router";
 const LoginPage = () => {
   const recaptchaRef = useRef(null);
 
-  
+
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
@@ -130,7 +130,7 @@ const LoginPage = () => {
             ref={recaptchaRef}
             style={{ display: "inline-block" }}
             onChange={handleToken}
-            sitekey={process.env.RECAPTCHA_SITE_KEY}
+            sitekey={`6Lejy9EfAAAAAMEI0ZEhONGya8d_5Y8OntkuHho-`}
           />
         </div>
         <button
