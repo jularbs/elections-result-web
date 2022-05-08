@@ -61,7 +61,13 @@ export default function Home() {
   const listRegions = () => {
     return results.map((result, key) => {
       return (
-        <option key={key} value={result._id}>
+        <option
+          key={key}
+          value={JSON.stringify({
+            key: result.file?.key,
+            bucket: result.file?.bucket,
+          })}
+        >
           {result.region}
         </option>
       );
@@ -89,6 +95,15 @@ export default function Home() {
   const handleSrc = ({ key, bucket }) => {
     setSrcLoading(true);
     getFile({ key: key, bucket: bucket }).then((data) => {
+      setHtml(data.data);
+      setSrcLoading(false);
+    });
+  };
+
+  const handleSrcSelection = (data) => {
+    setSrcLoading(true);
+    const parsed = JSON.parse(data);
+    getFile({ key: parsed.key, bucket: parsed.bucket }).then((data) => {
       setHtml(data.data);
       setSrcLoading(false);
     });
@@ -124,26 +139,34 @@ export default function Home() {
             >
               {listBatches()}
             </select>
-            <button className="btn btn-primary">Download Archive</button>
+            <button className="btn btn-primary">Download</button>
           </div>
-          <div className={styles["results-container"]}>
-            <ul>{showRegions()}</ul>
-          </div>
-          <div className={styles.searchboxContainer}>
-            <input
-              className="form-control"
-              type="text"
+
+          <div className={styles.locationContainer}>
+            <label>Region: </label>
+            <select
+              className={styles.selectWrapper}
               onChange={(e) => {
-                setSearchFilter(e.target.value);
+                handleSrcSelection(e.target.value);
               }}
-              placeholder="Position, Name of candidate, City, Province..."
-            />
-            <button className="btn" onClick={handleSearch}>
-              Search
-            </button>
+            >
+              {listRegions()}
+            </select>
           </div>
         </div>
-
+        <div className={styles.searchboxContainer}>
+          <input
+            className="form-control"
+            type="text"
+            onChange={(e) => {
+              setSearchFilter(e.target.value);
+            }}
+            placeholder="Position, Name of candidate, City, Province..."
+          />
+          <button className="btn" onClick={handleSearch}>
+            Search
+          </button>
+        </div>
         {srcLoading ? (
           <p className={styles.loadingDisplay}>Loading...</p>
         ) : (
