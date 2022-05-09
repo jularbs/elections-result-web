@@ -131,60 +131,63 @@ export function Home() {
 
   return (
     // <SearchProvider>
-      <div className={styles.container}>
-        <Head>
-          <title>Desisyon 2022 Partion Unofficial Results</title>
-          <meta
-            name="description"
-            content="Desisyon 2022 Partial Unofficial Results"
-          />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <div className={styles.headerContainer}>
-          <div className={styles.logoWrapper}>
-            <img src="/MBCDESISYON LOGO.png" className={styles.logoImg}></img>
-          </div>
-          <div className={styles.title}>Partial Unofficial Results</div>
-          <div className={styles.locationContainer}>
-            <label>Region: </label>
-            <select
-              className={styles.selectWrapper}
-              onChange={(e) => {
-                handleSrcSelection(e.target.value);
-              }}
-            >
-              {listRegions()}
-            </select>
-          </div>
+    <div className={styles.container}>
+      <Head>
+        <title>DZRH DESISYON 2022</title>
+        <meta
+          name="description"
+          content="DZRN News Desisyon 2022 election coverage. Online portal for updated results from the Parish Pastoral Council for Responsible Voting (PPCRV) quick count for the 2022 Philippine General Elections."
+        />
+        <meta
+          name="keywords"
+          content="Philippines, 2022 May election results, 2022 President results, 2022 Vice president results, 2022 Senate results, 2022 Philippines LGU election results"
+        />
+      </Head>
+      <div className={styles.headerContainer}>
+        <div className={styles.logoWrapper}>
+          <img src="/MBCDESISYON LOGO.png" className={styles.logoImg}></img>
         </div>
-
-        <div className={styles.searchboxContainer}>
-          <input
-            className="form-control"
-            type="text"
+        <div className={styles.title}>Partial Unofficial Results</div>
+        <div className={styles.locationContainer}>
+          <label>Region: </label>
+          <select
+            className={styles.selectWrapper}
             onChange={(e) => {
-              setSearchFilter(e.target.value);
+              handleSrcSelection(e.target.value);
             }}
-            placeholder="Position, Name of candidate, City, Province..."
-          />
-          <button className="btn" onClick={handleSearch}>
-            Search
-          </button>
+          >
+            {listRegions()}
+          </select>
         </div>
-        {batches.length < 1 ? (
-          <p className={styles.loadingDisplay}>No available data yet</p>
-        ) : (
-          ""
-        )}
-        {srcLoading ? (
-          <p className={styles.loadingDisplay}>Loading...</p>
-        ) : (
-          <div
-            className={styles.frameContainer}
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
-        )}
       </div>
+
+      <div className={styles.searchboxContainer}>
+        <input
+          className="form-control"
+          type="text"
+          onChange={(e) => {
+            setSearchFilter(e.target.value);
+          }}
+          placeholder="Position, Name of candidate, City, Province..."
+        />
+        <button className="btn" onClick={handleSearch}>
+          Search
+        </button>
+      </div>
+      {batches.length < 1 ? (
+        <p className={styles.loadingDisplay}>No available data yet</p>
+      ) : (
+        ""
+      )}
+      {srcLoading ? (
+        <p className={styles.loadingDisplay}>Loading...</p>
+      ) : (
+        <div
+          className={styles.frameContainer}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      )}
+    </div>
     // </SearchProvider>
   );
 }
