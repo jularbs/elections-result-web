@@ -1,16 +1,24 @@
 //TODOS: refine search, auth, hide download archive when not loggedin, refine regions
 import Head from "next/head";
 import styles from "styles/Home.module.scss";
-import { useState, useEffect, useRef } from "react";
+import React from "react";
+import { useState, useEffect, useContext } from "react";
 
 import { getBatches } from "actions/batch";
 import { getResultsByBatch } from "actions/result";
 import { getFile } from "actions/media";
 
 import AuthRoute from "layouts/AuthRoute";
-//search
 
-export default function Home() {
+//search
+import {
+  MatchText,
+  SearchProvider,
+  SearchContext,
+  SearchEventContext,
+} from "react-ctrl-f";
+
+export function Home() {
   const [batches, setBatches] = useState([]);
   const [batchSelection, setBatchSelection] = useState("");
 
@@ -122,58 +130,63 @@ export default function Home() {
   };
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>Desisyon 2022 Partion Unofficial Results</title>
-        <meta
-          name="description"
-          content="Desisyon 2022 Partial Unofficial Results"
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <div className={styles.headerContainer}>
-        <div className={styles.logoWrapper}>
-          <img src="/MBCDESISYON LOGO.png" className={styles.logoImg}></img>
+    // <SearchProvider>
+      <div className={styles.container}>
+        <Head>
+          <title>Desisyon 2022 Partion Unofficial Results</title>
+          <meta
+            name="description"
+            content="Desisyon 2022 Partial Unofficial Results"
+          />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
+        <div className={styles.headerContainer}>
+          <div className={styles.logoWrapper}>
+            <img src="/MBCDESISYON LOGO.png" className={styles.logoImg}></img>
+          </div>
+          <div className={styles.title}>Partial Unofficial Results</div>
+          <div className={styles.locationContainer}>
+            <label>Region: </label>
+            <select
+              className={styles.selectWrapper}
+              onChange={(e) => {
+                handleSrcSelection(e.target.value);
+              }}
+            >
+              {listRegions()}
+            </select>
+          </div>
         </div>
-        <div className={styles.title}>Partial Unofficial Results</div>
-        <div className={styles.locationContainer}>
-          <label>Region: </label>
-          <select
-            className={styles.selectWrapper}
+
+        <div className={styles.searchboxContainer}>
+          <input
+            className="form-control"
+            type="text"
             onChange={(e) => {
-              handleSrcSelection(e.target.value);
+              setSearchFilter(e.target.value);
             }}
-          >
-            {listRegions()}
-          </select>
+            placeholder="Position, Name of candidate, City, Province..."
+          />
+          <button className="btn" onClick={handleSearch}>
+            Search
+          </button>
         </div>
+        {batches.length < 1 ? (
+          <p className={styles.loadingDisplay}>No available data yet</p>
+        ) : (
+          ""
+        )}
+        {srcLoading ? (
+          <p className={styles.loadingDisplay}>Loading...</p>
+        ) : (
+          <div
+            className={styles.frameContainer}
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+        )}
       </div>
-      <div className={styles.searchboxContainer}>
-        <input
-          className="form-control"
-          type="text"
-          onChange={(e) => {
-            setSearchFilter(e.target.value);
-          }}
-          placeholder="Position, Name of candidate, City, Province..."
-        />
-        <button className="btn" onClick={handleSearch}>
-          Search
-        </button>
-      </div>
-      {batches.length < 1 ? (
-        <p className={styles.loadingDisplay}>No available data yet</p>
-      ) : (
-        ""
-      )}
-      {srcLoading ? (
-        <p className={styles.loadingDisplay}>Loading...</p>
-      ) : (
-        <div
-          className={styles.frameContainer}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
-      )}
-    </div>
+    // </SearchProvider>
   );
 }
+
+export default Home;
