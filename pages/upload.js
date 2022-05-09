@@ -3,9 +3,11 @@ import { useState, useEffect, useRef } from "react";
 
 import { uploadSnapshot } from "actions/snapshot";
 import AuthRoute from "layouts/AuthRoute";
+import { Spinner } from "reactstrap";
 
 export default function Home() {
   const [snapshot, setSnapshot] = useState();
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = () => (e) => {
     const file = e.target.files[0];
@@ -13,10 +15,18 @@ export default function Home() {
   };
 
   const handleSubmit = () => {
+    setLoading(true);
     let formData = new FormData();
     formData.set("snapshot", snapshot);
-
-    uploadSnapshot(formData).then((data) => {});
+    if (snapshot) {
+      uploadSnapshot(formData).then((data) => {
+        alert("SNAPSHOT UPLOADED!");
+        setLoading(false);
+      });
+    } else {
+      setLoading(false);
+      alert("SNAPSHOT ZIP FILE REQUIRED");
+    }
   };
 
   return (
@@ -28,9 +38,17 @@ export default function Home() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
 
-        <input type="file" onChange={handleFileChange()} name="snapshot" />
-        <button onClick={handleSubmit}>Upload</button>
-        <pre>{JSON.stringify(snapshot, null, 2)}</pre>
+        <h2 className="text-center mt-3">Desisyon 2022 Snapshot upload portal</h2>
+        <div className="d-flex m-4">
+          <input type="file" onChange={handleFileChange()} name="snapshot" />
+          <button onClick={handleSubmit}>Upload</button>
+          {loading && <Spinner color="black" className="mx-3" />}
+        </div>
+        {loading && (
+          <p className="mx-4">
+            File is being uploaded. It may take a minute, please wait...
+          </p>
+        )}
       </div>
     </AuthRoute>
   );
