@@ -7,6 +7,8 @@ import { getBatches } from "actions/batch";
 import { getResultsByBatch } from "actions/result";
 import { getFile } from "actions/media";
 
+import { downloadSnapshot } from "actions/snapshot";
+
 import AuthRoute from "layouts/AuthRoute";
 //search
 
@@ -121,6 +123,16 @@ export default function Home() {
     console.log(result);
   };
 
+  const handleDownload = () => {
+    downloadSnapshot(batchSelection).then((data) => {
+      if (data.file) {
+        console.log(data);
+        window.open(data.file.location);
+      } else {
+        alert("SNAPSHOT NOT AVAILABLE");
+      }
+    });
+  };
   return (
     <AuthRoute>
       <div className={styles.container}>
@@ -143,9 +155,10 @@ export default function Home() {
               >
                 {listBatches()}
               </select>
-              <button className="btn btn-primary">Download</button>
+              <button className="btn btn-primary" onClick={handleDownload}>
+                Download
+              </button>
             </div>
-
             <div className={styles.locationContainer}>
               <label>Region: </label>
               <select
@@ -159,6 +172,7 @@ export default function Home() {
             </div>
           </div>
         )}
+        <h1 className={styles.title}>PARTIAL UNOFFICIAL RESULTS</h1>
 
         <div className={styles.searchboxContainer}>
           <input
@@ -173,6 +187,11 @@ export default function Home() {
             Search
           </button>
         </div>
+        {batches.length < 1 ? (
+          <p className={styles.loadingDisplay}>No data available yet.</p>
+        ) : (
+          ""
+        )}
         {srcLoading ? (
           <p className={styles.loadingDisplay}>Loading...</p>
         ) : (

@@ -12,3 +12,15 @@ export const uploadSnapshot = (form) => {
     return res.data;
   });
 };
+
+export const downloadSnapshot = (id) => {
+  return axios({
+    method: "GET",
+    url: `${process.env.API}/v1/download-snapshot/${id}`,
+    // headers: {
+    //   Authorization: `Bearer ${token}`,
+    // },
+  }).then((res) => {
+    return res.data;
+  });
+};
