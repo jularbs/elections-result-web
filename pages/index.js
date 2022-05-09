@@ -133,10 +133,10 @@ export function Home() {
     // <SearchProvider>
     <div className={styles.container}>
       <Head>
-        <title>DZRH DESISYON 2022</title>
+        <title>MBC DESISYON 2022</title>
         <meta
           name="description"
-          content="DZRN News Desisyon 2022 election coverage. Online portal for updated results from the Parish Pastoral Council for Responsible Voting (PPCRV) quick count for the 2022 Philippine General Elections."
+          content="DZRH News Desisyon 2022 election coverage. Online portal for updated results from the Parish Pastoral Council for Responsible Voting (PPCRV) quick count for the 2022 Philippine General Elections."
         />
         <meta
           name="keywords"
