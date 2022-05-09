@@ -10,14 +10,6 @@ import { getFile } from "actions/media";
 
 import AuthRoute from "layouts/AuthRoute";
 
-//search
-import {
-  MatchText,
-  SearchProvider,
-  SearchContext,
-  SearchEventContext,
-} from "react-ctrl-f";
-
 export function Home() {
   const [batches, setBatches] = useState([]);
   const [batchSelection, setBatchSelection] = useState("");
@@ -142,6 +134,31 @@ export function Home() {
           name="keywords"
           content="Philippines, 2022 May election results, 2022 President results, 2022 Vice president results, 2022 Senate results, 2022 Philippines LGU election results"
         />
+
+        <meta
+          property="og:title"
+          content="MBC Desisyon 2022 Partial Unofficial Results"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://desisyon2022.dzrh.com.ph" />
+        <meta
+          property="og:image"
+          content="https://desisyon2022.dzrh.com.ph/DesisyonBanner.jpeg"
+        />
+
+        <meta
+          name="twitter:title"
+          content="MBC Desisyon 2022 Partial Unofficial Results"
+        />
+        <meta
+          name="twitter:description"
+          content="DZRH News Desisyon 2022 election coverage. Online portal for updated results from the Parish Pastoral Council for Responsible Voting (PPCRV) quick count for the 2022 Philippine General Elections."
+        />
+        <meta
+          name="twitter:image"
+          content="https://desisyon2022.dzrh.com.ph/DesisyonBanner.jpeg"
+        />
+        <meta name="twitter:card" content="summary_large_image"></meta>
       </Head>
       <div className={styles.headerContainer}>
         <div className={styles.logoWrapper}>
