@@ -9,6 +9,22 @@
   background-color: white;
   min-width: 100vw;
   border-bottom: 1px #162570 solid;
+
+  .title {
+    text-align: center;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .logoWrapper {
+    max-width: 500px;
+    padding: 5px 2rem;
+    margin: 0 auto;
+
+    .logoImg {
+      width: 100%;
+    }
+  }
 }
 
 .results-container {
@@ -54,6 +70,8 @@
 }
 
 .locationContainer {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 0.5rem;
   display: flex;
   align-items: center;
