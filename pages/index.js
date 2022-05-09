@@ -161,6 +161,11 @@ export default function Home() {
           Search
         </button>
       </div>
+      {batches.length < 1 ? (
+        <p className={styles.loadingDisplay}>No available data yet</p>
+      ) : (
+        ""
+      )}
       {srcLoading ? (
         <p className={styles.loadingDisplay}>Loading...</p>
       ) : (
