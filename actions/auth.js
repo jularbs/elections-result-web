@@ -3,7 +3,7 @@ import axios from "axios";
 export const signIn = (user) => {
   return axios({
     method: "POST",
-    url: `${process.env.API}v1/signin`,
+    url: `${process.env.API}/v1/signin`,
     data: user,
   }).then((res) => {
     return res.data;
