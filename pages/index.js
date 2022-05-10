@@ -29,13 +29,19 @@ export function Home() {
     });
   }, []);
 
+  const compare = (a, b) => {
+    if (a.region > b.region) return 1;
+    if (a.region < b.region) return -1;
+    return 0;
+  };
+
   useEffect(() => {
     if (batchSelection) getResults(batchSelection);
   }, [batchSelection]);
 
   const getResults = (batchId) => {
     getResultsByBatch(batchId).then((data) => {
-      setResults(data);
+      setResults(data.sort(compare));
       if (data.length > 0) {
         setSrcLoading(true);
         getFile({ key: data[0].file?.key, bucket: data[0].file?.bucket }).then(
